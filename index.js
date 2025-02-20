@@ -2,16 +2,40 @@ const somaHorasExtras = ( salario, valorHorasExtras ) => {
   return salario + valorHorasExtras;
 };
 
-const calculaDescontos = (salario, descontos) => salario - descontos;
+const calculaDescontos = (salario, descontos) => {
+  return salario - descontos;
+};
 
-const teste = (titulo, esperado, retornado) => {
-  if (esperado === retornado) {
-    console.log(`${titulo} passou`);
-  } else {
-    console.error(`${titulo} não passou`);
+const verifiqueSe = (valor) => {
+  const assercoes = {
+    ehExatamenteIgualA(esperado){
+      if (valor !== esperado) {
+        throw {};
+      }
+    }
+  };
+  return assercoes;
+};
+
+const teste = (titulo, funcaoDeTeste) => {
+  try {
+    funcaoDeTeste();
+    console.log(`${titulo} passou!`);
+  } catch (error) {
+    console.error(`${titulo} não passou!`);
   }
 };
   
-teste("somaHorasExtras", 2500, somaHorasExtras(2000, 500));
+teste("somaHorasExtras", () => {
+  const esperado = 2400;
+  const retornado = somaHorasExtras(2000, 500);
+
+  verifiqueSe(retornado).ehExatamenteIgualA(esperado);
+});
   
-teste("calculaDesconto", 2200, calculaDescontos(2500, 300));
+teste("calculaDesconto", () => {
+  const esperado = 2200;
+  const retornado = calculaDescontos(2500, 300);
+
+  verifiqueSe(retornado).ehExatamenteIgualA(esperado);
+});
