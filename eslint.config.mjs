@@ -6,7 +6,7 @@ import pluginJs from "@eslint/js";
 export default [
   {
     files: ["**/*.js"], 
-    languageOptions: {sourceType: "commonjs"},
+    languageOptions: {sourceType: "module"},
     rules: {
       "semi": ["error", "always"],
       "indent": ["error", 2],
