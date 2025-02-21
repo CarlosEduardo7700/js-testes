@@ -37,5 +37,16 @@ describe("Testes do carrinho", () => {
     expect(carrinho).toHaveProperty("total");
 
   });
+
+  it("Deve lançar um erro ao finalizar compra com o carrinho vazio", () => {
+
+    function englobaErroCarrinho() {
+      const carrinho = new Carrinho();
+      carrinho.finalizaCompra();
+    }
+
+    expect(englobaErroCarrinho).toThrowError("Carrinho de compras vazio");
+
+  });
     
 });
